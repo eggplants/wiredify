@@ -1,9 +1,11 @@
 from __future__ import annotations
 
+import os
+
 import pytest
 
 from wiredify import __version__, dewiredify, wiredify
-from wiredify.main import __main
+from wiredify.main import __main, __repl
 
 TEST_CASES: list[tuple[str, str]] = [
     ("ヴォジョレーヌーヴォ", "ボジョレーヌーボ"),
@@ -63,7 +65,20 @@ class MockedArgs:
     pass
 
 
-def test_input(capfd: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch) -> None:
+def test_stdin(capfd: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch) -> None:
+    mocked_args = MockedArgs()
+    mocked_args.__dict__["invert"] = None
+    mocked_args.__dict__["text"] = None
+    monkeypatch.setattr("sys.stdin.isatty", lambda: False)
+    monkeypatch.setattr("sys.stdin.read", lambda: "ゔぁゔぉ")
+    monkeypatch.setattr("argparse.ArgumentParser.parse_args", lambda _: mocked_args)
+    __main(test=[])
+    captured = capfd.readouterr()
+    assert captured.out == "ばぼ\n"  # pyre-fixme[16]
+    assert not captured.err  # pyre-fixme[16]
+
+
+def test_repl(capfd: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch) -> None:
     i = ["quit", "ゔぁゔぉ"]
     mocked_args = MockedArgs()
     mocked_args.__dict__["invert"] = None
@@ -73,4 +88,20 @@ def test_input(capfd: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatc
     __main(test=[])
     captured = capfd.readouterr()
     assert captured.out == "ばぼ\nbye.\n"  # pyre-fixme[16]
+    assert not captured.err  # pyre-fixme[16]
+
+
+def test_repl_int(capfd: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch) -> None:
+    def mocked_func(_text: str) -> str:
+        if "PYTEST_CURRENT_TEST" in os.environ:
+            raise KeyboardInterrupt
+        return "Never."
+
+    mocked_args = MockedArgs()
+    mocked_args.__dict__["invert"] = None
+    mocked_args.__dict__["text"] = None
+    monkeypatch.setattr("builtins.input", lambda _: "ヴォ")
+    __repl(func=mocked_func)
+    captured = capfd.readouterr()
+    assert captured.out == "bye.\n"  # pyre-fixme[16]
     assert not captured.err  # pyre-fixme[16]
