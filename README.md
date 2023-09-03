@@ -30,7 +30,7 @@
   <https://github.com/eggplants/wiredify/pkgs/container/wiredify>
 )
 
-Convert japanese kana from va-vi-vu-ve-vo into ba-bi-bu-be-bo.
+Convert japanese kana from ba-bi-bu-be-bo into va-vi-vu-ve-vo.
 
 ## Install
 
@@ -43,17 +43,17 @@ pip install wiredify
 ### Usage
 
 ```shellsession
-$ wiredify <<< 'ジェネレーティヴ・エーアイ'
-ジェネレーティブ・エーアイ
+$ wiredify <<< 'ジェネレーティブ・エーアイ'
+ジェネレーティヴ・エーアイ
 
-$ wiredify 'ジェネレーティヴ・エーアイ'
-ジェネレーティブ・エーアイ
+$ wiredify 'ジェネレーティブ・エーアイ'
+ジェネレーティヴ・エーアイ
 
-$ echo ジェネレーティヴ・エーアイ | wiredify
-ジェネレーティブ・エーアイ
+$ echo 'ジェネレーティブ・エーアイ' | wiredify
+ジェネレーティヴ・エーアイ
 
 $ wiredify
->>> ジェネレーティヴ・エーアイ
+>>> ジェネレーティブ・エーアイ
 ジェネレーティヴ・エーアイ
 >>> ...[Press ctrl+d to exit]
 $
@@ -65,7 +65,7 @@ $
 $ wiredify -h
 usage: wiredify [-h] [-V] [text]
 
-Convert japanese kana from va-vi-vu-ve-vo into ba-bi-bu-be-bo
+Convert japanese kana from ba-bi-bu-be-bo into va-vi-vu-ve-vo.
 
 positional arguments:
   text           target text (default: None)
@@ -75,17 +75,17 @@ optional arguments:
   -V, --version  show program's version number and exit
 
 examples:
-  $ wiredify <<< 'ジェネレーティヴ・エーアイ'
-  ジェネレーティブ・エーアイ
+  $ wiredify <<< 'ジェネレーティブ・エーアイ'
+  ジェネレーティヴ・エーアイ
 
-  $ wiredify 'ジェネレーティヴ・エーアイ'
-  ジェネレーティブ・エーアイ
+  $ wiredify 'ジェネレーティブ・エーアイ'
+  ジェネレーティヴ・エーアイ
 
-  $ echo ジェネレーティヴ・エーアイ | wiredify
-  ジェネレーティブ・エーアイ
+  $ echo 'ジェネレーティブ・エーアイ' | wiredify
+  ジェネレーティヴ・エーアイ
 
   $ wiredify
-  >>> ジェネレーティヴ・エーアイ
+  >>> ジェネレーティブ・エーアイ
   ジェネレーティヴ・エーアイ
   >>> ...[Press ctrl+d to exit]
   $

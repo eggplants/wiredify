@@ -8,13 +8,13 @@ from wiredify import __version__, dewiredify, wiredify
 from wiredify.main import __main, __repl
 
 TEST_CASES: list[tuple[str, str]] = [
-    ("ヴォジョレーヌーヴォ", "ボジョレーヌーボ"),
-    ("ゔぁゔぃゔゔぇゔぇゔぉ", "ばびぶべべぼ"),
-    ("ジェネレーティヴ・エーアイ", "ジェネレーティブ・エーアイ"),
-    ("ゔぉるゔぉ", "ぼるぼ"),
-    ("ヴァンダル", "バンダル"),
-    ("ヴァーイミーツヴォーイ", "バーイミーツボーイ"),
-    ("ヴァンヴェール", "バンベール"),
+    ("ボジョレーヌーボ", "ヴォジョレーヌーヴォ"),
+    ("ばびぶべべぼ", "ゔぁゔぃゔゔぇゔぇゔぉ"),
+    ("ジェネレーティブ・エーアイ", "ジェネレーティヴ・エーアイ"),
+    ("ぼるぼ", "ゔぉるゔぉ"),
+    ("バンダル", "ヴァンダル"),
+    ("バーイミーツボーイ", "ヴァーイミーツヴォーイ"),
+    ("バンベール", "ヴァンヴェール"),
 ]
 
 
@@ -48,16 +48,16 @@ def test_cli_version(capfd: pytest.CaptureFixture[str]) -> None:
 
 
 def test_pos_arg(capfd: pytest.CaptureFixture[str]) -> None:
-    __main(test=["ゔぁゔぃゔゔぇゔぉ"])
+    __main(test=["ばびぶべぼ"])
     captured = capfd.readouterr()
-    assert captured.out == "ばびぶべぼ\n"  # pyre-fixme[16]
+    assert captured.out == "ゔぁゔぃゔゔぇゔぉ\n"  # pyre-fixme[16]
     assert not captured.err  # pyre-fixme[16]
 
 
 def test_pos_arg_inv(capfd: pytest.CaptureFixture[str]) -> None:
-    __main(test=["ばびぶべぼ", "--invert"])
+    __main(test=["ゔぁゔぃゔゔぇゔぉ", "--invert"])
     captured = capfd.readouterr()
-    assert captured.out == "ゔぁゔぃゔゔぇゔぉ\n"  # pyre-fixme[16]
+    assert captured.out == "ばびぶべぼ\n"  # pyre-fixme[16]
     assert not captured.err  # pyre-fixme[16]
 
 
@@ -70,16 +70,16 @@ def test_stdin(capfd: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatc
     mocked_args.__dict__["invert"] = None
     mocked_args.__dict__["text"] = None
     monkeypatch.setattr("sys.stdin.isatty", lambda: False)
-    monkeypatch.setattr("sys.stdin.read", lambda: "ゔぁゔぉ")
+    monkeypatch.setattr("sys.stdin.read", lambda: "バボ")
     monkeypatch.setattr("argparse.ArgumentParser.parse_args", lambda _: mocked_args)
     __main(test=[])
     captured = capfd.readouterr()
-    assert captured.out == "ばぼ\n"  # pyre-fixme[16]
+    assert captured.out == "ヴァヴォ\n"  # pyre-fixme[16]
     assert not captured.err  # pyre-fixme[16]
 
 
 def test_repl(capfd: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch) -> None:
-    i = ["quit", "ゔぁゔぉ"]
+    i = ["quit", "バボ"]
     mocked_args = MockedArgs()
     mocked_args.__dict__["invert"] = None
     mocked_args.__dict__["text"] = None
@@ -87,7 +87,7 @@ def test_repl(capfd: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch
     monkeypatch.setattr("argparse.ArgumentParser.parse_args", lambda _: mocked_args)
     __main(test=[])
     captured = capfd.readouterr()
-    assert captured.out == "ばぼ\nbye.\n"  # pyre-fixme[16]
+    assert captured.out == "ヴァヴォ\nbye.\n"  # pyre-fixme[16]
     assert not captured.err  # pyre-fixme[16]
 
 

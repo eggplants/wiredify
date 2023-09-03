@@ -24,25 +24,25 @@ def parse_args(test: list[str] | None = None) -> argparse.Namespace:
                 max_help_position=25,
             )
         ),
-        description="Convert japanese kana from va-vi-vu-ve-vo into ba-bi-bu-be-bo",
+        description="Convert japanese kana from ba-bi-bu-be-bo into va-vi-vu-ve-vo.",
         epilog=dedent(
             """
-        examples:
-          $ wiredify <<< 'ジェネレーティヴ・エーアイ'
-          ジェネレーティブ・エーアイ
+            examples:
+              $ wiredify <<< 'ジェネレーティブ・エーアイ'
+              ジェネレーティヴ・エーアイ
 
-          $ wiredify 'ジェネレーティヴ・エーアイ'
-          ジェネレーティブ・エーアイ
+              $ wiredify 'ジェネレーティブ・エーアイ'
+              ジェネレーティヴ・エーアイ
 
-          $ echo ジェネレーティヴ・エーアイ | wiredify
-          ジェネレーティブ・エーアイ
+              $ echo 'ジェネレーティブ・エーアイ' | wiredify
+              ジェネレーティヴ・エーアイ
 
-          $ wiredify
-          >>> ジェネレーティヴ・エーアイ
-          ジェネレーティヴ・エーアイ
-          >>> ...[Press ctrl+d to exit]
-          $
-        """,
+              $ wiredify
+              >>> ジェネレーティブ・エーアイ
+              ジェネレーティヴ・エーアイ
+              >>> ...[Press ctrl+d to exit]
+              $
+            """,
         ),
     )
 
