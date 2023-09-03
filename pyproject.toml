@@ -16,14 +16,14 @@ classifiers = [
   "Programming Language :: Python :: 3 :: Only",
   "Programming Language :: Python :: Implementation :: CPython",
 ]
-description = "Convert japanese kana from va-vi-vu-ve-vo into ba-bi-bu-be-bo"
+description = "Convert japanese kana from ba-bi-bu-be-bo into va-vi-vu-ve-vo"
 keywords = ["joke", "cli", "japanese"]
 name = "wiredify"
 packages = [{include = "wiredify"}]
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/eggplants/wiredify"
-version = "0.0.1"
+version = "0.0.2"
 
 [tool.poetry.dependencies]
 python = ">=3.8,<4"
