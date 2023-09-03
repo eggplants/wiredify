@@ -64,7 +64,7 @@ def parse_args(test: list[str] | None = None) -> argparse.Namespace:
 def __repl(func: Callable[[str], str]) -> None:
     while True:
         try:
-            text = input(">>> ")
+            text = input(">>> ").rstrip()
             if text in ["exit", "quit", "q"]:
                 print("bye.")
                 return
@@ -76,14 +76,15 @@ def __repl(func: Callable[[str], str]) -> None:
 
 def __main(test: list[str] | None = None) -> int:
     args = parse_args(test)
-    func = wiredify if not args.invert else dewiredify
-    if args.text:
-        print(func(args.text))
+    text, invert = str(args.text or "").rstrip(), bool(args.invert)
+    func = wiredify if not invert else dewiredify
+    if text:
+        print(func(text))
         return 0
     if sys.stdin.isatty():
         __repl(func)
         return 0
-    print(func(sys.stdin.read()))
+    print(func(sys.stdin.read().rstrip()))
     return 0
 
 
