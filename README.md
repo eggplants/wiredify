@@ -62,7 +62,33 @@ $
 ### Help
 
 ```shellsession
-wiredify -h
+$ wiredify -h
+usage: wiredify [-h] [-V] [text]
+
+Convert japanese kana from va-vi-vu-ve-vo into ba-bi-bu-be-bo
+
+positional arguments:
+  text           target text (default: None)
+
+optional arguments:
+  -h, --help     show this help message and exit
+  -V, --version  show program's version number and exit
+
+examples:
+  $ wiredify <<< 'ジェネレーティヴ・エーアイ'
+  ジェネレーティブ・エーアイ
+
+  $ wiredify 'ジェネレーティヴ・エーアイ'
+  ジェネレーティブ・エーアイ
+
+  $ echo ジェネレーティヴ・エーアイ | wiredify
+  ジェネレーティブ・エーアイ
+
+  $ wiredify
+  >>> ジェネレーティヴ・エーアイ
+  ジェネレーティヴ・エーアイ
+  >>> ...[Press ctrl+d to exit]
+  $
 ```
 
 ## Library
