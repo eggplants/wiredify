@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from wiredify import dewiredify, wiredify
+from wiredify import __version__, dewiredify, wiredify
 from wiredify.main import __main
 
 TEST_CASES: list[tuple[str, str]] = [
@@ -33,6 +33,15 @@ def test_cli_help(capfd: pytest.CaptureFixture[str]) -> None:
     captured = capfd.readouterr()
     assert "va-vi-vu-ve-vo" in captured.out  # pyre-fixme[16]
     assert "usage:" in captured.out
+    assert not captured.err  # pyre-fixme[16]
+
+
+def test_cli_version(capfd: pytest.CaptureFixture[str]) -> None:
+    with pytest.raises(SystemExit) as e:
+        __main(test=["-V"])
+    assert e.value.code == 0
+    captured = capfd.readouterr()
+    assert __version__ + "\n" == captured.out  # pyre-fixme[16]
     assert not captured.err  # pyre-fixme[16]
 
 
