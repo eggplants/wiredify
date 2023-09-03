@@ -52,7 +52,6 @@ def parse_args(test: list[str] | None = None) -> argparse.Namespace:
         nargs="?",
         help="target text",
     )
-    # hidden option ;)
     parser.add_argument("--invert", action="store_true", help="enable dewiredify mode")
     parser.add_argument("-V", "--version", action="version", version=__version__)
 
