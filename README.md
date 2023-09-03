@@ -63,7 +63,7 @@ $
 
 ```shellsession
 $ wiredify -h
-usage: wiredify [-h] [-V] [text]
+usage: wiredify [-h] [--invert] [-V] [text]
 
 Convert japanese kana from ba-bi-bu-be-bo into va-vi-vu-ve-vo.
 
@@ -72,6 +72,7 @@ positional arguments:
 
 optional arguments:
   -h, --help     show this help message and exit
+  --invert       enable dewiredify mode (default: False)
   -V, --version  show program's version number and exit
 
 examples:
