@@ -26,7 +26,7 @@ jobs:
         cache: pip
         cache-dependency-path: poetry.lock
         python-version: ${{ matrix.python-version }}
-    - uses: abatilo/actions-poetry@v2
+    - uses: abatilo/actions-poetry@v3
     - run: poetry install --no-interaction
     - uses: Yuri6037/Action-FakeTTY@v1.1
     - name: Test on ${{ runner.os }}
