@@ -29,7 +29,7 @@ version = "0.0.2"
 python = ">=3.8,<4"
 
 [tool.poetry.group.dev.dependencies]
-mypy = ">=0.991,<1.8"
+mypy = ">=0.991,<1.12"
 pre-commit = ">=2.20,<4.0"
 taskipy = "^1.10.3"
 pytest = ">=7.2.2,<9.0.0"
