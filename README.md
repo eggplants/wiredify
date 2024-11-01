@@ -23,9 +23,9 @@
 )
 
 [![ghcr latest](
-  <https://ghcr-badge.deta.dev/eggplants/wiredify/latest_tag?trim=major&label=latest>
+  <https://ghcr-badge.egpl.dev/eggplants/wiredify/latest_tag?trim=major&label=latest>
  ) ![ghcr size](
-  <https://ghcr-badge.deta.dev/eggplants/wiredify/size>
+  <https://ghcr-badge.egpl.dev/eggplants/wiredify/size>
 )](
   <https://github.com/eggplants/wiredify/pkgs/container/wiredify>
 )
