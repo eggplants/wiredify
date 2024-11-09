@@ -87,7 +87,7 @@ def test_repl(capfd: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch
     monkeypatch.setattr("argparse.ArgumentParser.parse_args", lambda _: mocked_args)
     __main(test=[])
     captured = capfd.readouterr()
-    assert captured.out == "ヴァヴォ\nbye.\n”
+    assert captured.out == "ヴァヴォ\nbye.\n"
     assert not captured.err
 
 
