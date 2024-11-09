@@ -33,9 +33,9 @@ def test_cli_help(capfd: pytest.CaptureFixture[str]) -> None:
         __main(test=["-h"])
     assert e.value.code == 0
     captured = capfd.readouterr()
-    assert "va-vi-vu-ve-vo" in captured.out  # pyre-fixme[16]
+    assert "va-vi-vu-ve-vo" in captured.out
     assert "usage:" in captured.out
-    assert not captured.err  # pyre-fixme[16]
+    assert not captured.err
 
 
 def test_cli_version(capfd: pytest.CaptureFixture[str]) -> None:
@@ -43,22 +43,22 @@ def test_cli_version(capfd: pytest.CaptureFixture[str]) -> None:
         __main(test=["-V"])
     assert e.value.code == 0
     captured = capfd.readouterr()
-    assert __version__ + "\n" == captured.out  # pyre-fixme[16]
-    assert not captured.err  # pyre-fixme[16]
+    assert __version__ + "\n" == captured.out
+    assert not captured.err
 
 
 def test_pos_arg(capfd: pytest.CaptureFixture[str]) -> None:
     __main(test=["ばびぶべぼ"])
     captured = capfd.readouterr()
-    assert captured.out == "ゔぁゔぃゔゔぇゔぉ\n"  # pyre-fixme[16]
-    assert not captured.err  # pyre-fixme[16]
+    assert captured.out == "ゔぁゔぃゔゔぇゔぉ\n"
+    assert not captured.err
 
 
 def test_pos_arg_inv(capfd: pytest.CaptureFixture[str]) -> None:
     __main(test=["ゔぁゔぃゔゔぇゔぉ", "--invert"])
     captured = capfd.readouterr()
-    assert captured.out == "ばびぶべぼ\n"  # pyre-fixme[16]
-    assert not captured.err  # pyre-fixme[16]
+    assert captured.out == "ばびぶべぼ\n"
+    assert not captured.err
 
 
 class MockedArgs:
@@ -74,8 +74,8 @@ def test_stdin(capfd: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatc
     monkeypatch.setattr("argparse.ArgumentParser.parse_args", lambda _: mocked_args)
     __main(test=[])
     captured = capfd.readouterr()
-    assert captured.out == "ヴァヴォ\n"  # pyre-fixme[16]
-    assert not captured.err  # pyre-fixme[16]
+    assert captured.out == "ヴァヴォ\n"
+    assert not captured.err
 
 
 def test_repl(capfd: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch) -> None:
@@ -87,8 +87,8 @@ def test_repl(capfd: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch
     monkeypatch.setattr("argparse.ArgumentParser.parse_args", lambda _: mocked_args)
     __main(test=[])
     captured = capfd.readouterr()
-    assert captured.out == "ヴァヴォ\nbye.\n"  # pyre-fixme[16]
-    assert not captured.err  # pyre-fixme[16]
+    assert captured.out == "ヴァヴォ\nbye.\n”
+    assert not captured.err
 
 
 def test_repl_int(capfd: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch) -> None:
@@ -103,5 +103,5 @@ def test_repl_int(capfd: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyP
     monkeypatch.setattr("builtins.input", lambda _: "ヴォ")
     __repl(func=mocked_func)
     captured = capfd.readouterr()
-    assert captured.out == "bye.\n"  # pyre-fixme[16]
-    assert not captured.err  # pyre-fixme[16]
+    assert captured.out == "bye.\n"
+    assert not captured.err
