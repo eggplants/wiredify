@@ -31,6 +31,6 @@ def dewiredify(text: str) -> str:
 
 __all__ = (
     "__version__",
-    "wiredify",
     "dewiredify",
+    "wiredify",
 )
