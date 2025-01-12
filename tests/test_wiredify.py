@@ -65,7 +65,10 @@ class MockedArgs:
     pass
 
 
-def test_stdin(capfd: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch) -> None:
+def test_stdin(
+    capfd: pytest.CaptureFixture[str],
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
     mocked_args = MockedArgs()
     mocked_args.__dict__["invert"] = None
     mocked_args.__dict__["text"] = None
@@ -78,7 +81,10 @@ def test_stdin(capfd: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatc
     assert not captured.err
 
 
-def test_repl(capfd: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch) -> None:
+def test_repl(
+    capfd: pytest.CaptureFixture[str],
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
     i = ["quit", "バボ"]
     mocked_args = MockedArgs()
     mocked_args.__dict__["invert"] = None
@@ -91,7 +97,10 @@ def test_repl(capfd: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch
     assert not captured.err
 
 
-def test_repl_int(capfd: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch) -> None:
+def test_repl_int(
+    capfd: pytest.CaptureFixture[str],
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
     def mocked_func(_text: str) -> str:
         if "PYTEST_CURRENT_TEST" in os.environ:
             raise KeyboardInterrupt

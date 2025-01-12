@@ -9,7 +9,10 @@ from typing import Callable
 from . import __version__, dewiredify, wiredify
 
 
-class CustomFormatter(argparse.ArgumentDefaultsHelpFormatter, argparse.RawDescriptionHelpFormatter):
+class CustomFormatter(
+    argparse.ArgumentDefaultsHelpFormatter,
+    argparse.RawDescriptionHelpFormatter,
+):
     pass
 
 
