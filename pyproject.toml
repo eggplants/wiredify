@@ -1,12 +1,9 @@
 [build-system]
-build-backend = "poetry.core.masonry.api"
-requires = [
-  "poetry-core>=2",
-]
+build-backend = "hatchling.build"
+requires = [ "hatchling", "uv-dynamic-versioning" ]
 
 [project]
 name = "wiredify"
-version = "0.1.0"
 description = "Convert japanese kana from ba-bi-bu-be-bo into va-vi-vu-ve-vo"
 readme = "README.md"
 keywords = [
@@ -15,9 +12,7 @@ keywords = [
   "joke",
 ]
 license = { text = "MIT" }
-authors = [
-  { name = "eggplants", email = "w10776e8w@yahoo.co.jp" },
-]
+authors = [ { name = "eggplants", email = "w10776e8w@yahoo.co.jp" } ]
 requires-python = ">=3.9,<4"
 classifiers = [
   "License :: OSI Approved :: MIT License",
@@ -31,34 +26,45 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Typing :: Typed",
 ]
+dynamic = [ "version" ]
+
 urls.Repository = "https://github.com/eggplants/wiredify"
 scripts.wiredify = "wiredify.main:main"
 
-[tool.poetry]
-requires-poetry = ">=2.0"
-packages = [
-  { include = "wiredify" },
+[dependency-groups]
+dev = [
+  "mypy>=0.991,<1.15",
+  "pre-commit>=2.20,<4",
+  "pytest>=7.2.2,<9",
+  "pytest-cov>=4,<6",
+  "taskipy>=1.10.3,<2",
 ]
+docs = [ "pdoc" ]
 
-[tool.poetry.group.dev.dependencies]
-mypy = ">=0.991,<1.15"
-pre-commit = ">=2.20,<4.0"
-taskipy = "^1.10.3"
-pytest = ">=7.2.2,<9.0.0"
-pytest-cov = ">=4,<6"
+[tool.hatch.version]
+# tool.hatch.version.source is not listed in official schema.
+# https://github.com/ninoseki/uv-dynamic-versioning/issues/21
+source = "uv-dynamic-versioning"
 
-[tool.poetry.requires-plugins]
-poetry-plugin-shell = ">=1.0"
+[tool.hatch.build.targets.sdist]
+include = [ "wiredify" ]
+
+[tool.hatch.build.targets.wheel]
+include = [ "wiredify" ]
 
 [tool.ruff]
+line-length = 120
+format.indent-style = "space"
+format.quote-style = "double"
 lint.select = [ "ALL" ]
-lint.ignore = [ "D" ]
 lint.per-file-ignores."main.py" = [
   "T201", # `print` found
 ]
-lint.per-file-ignores."tests/*test_*.py" = [
+lint.per-file-ignores."tests/*.py" = [
+  "D",
   "S101", # Use of assert detected
 ]
+lint.pydocstyle.convention = "google"
 
 [tool.mypy]
 pretty = true
@@ -74,8 +80,19 @@ precise_return = true
 protocols = true
 strict_import = true
 
+[tool.uv]
+default-groups = [
+  "dev",
+  "docs",
+]
+
+[tool.uv-dynamic-versioning]
+vcs = "git"
+style = "semver"
+
 [tool.taskipy.tasks]
 test = "pytest -s --cov=wiredify --cov-report=term"
-"test:ci" = "task test -s --cov-report=xml:cov.xml"
+"test:ci" = "task test --cov-report=xml:cov.xml"
 lint = "pre-commit run -a"
 profile = "python -m cProfile"
+gendoc = "pdoc wiredify -o ./docs --docformat google"

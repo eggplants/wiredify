@@ -5,9 +5,9 @@
   )](
   <https://badge.fury.io/py/wiredify>
 ) [![Maintainability](
-  <https://api.codeclimate.com/v1/badges/af70c14ac330cd2c86dc/maintainability>
+  <https://qlty.sh/badges/6e8b0efe-da67-4184-adfc-81106a08887a/maintainability.svg>
   )](
-  <https://codeclimate.com/github/eggplants/wiredify/maintainability>
+  <https://qlty.sh/gh/eggplants/projects/wiredify>
 ) [![pre-commit.ci status](
   <https://results.pre-commit.ci/badge/github/eggplants/wiredify/master.svg>
   )](
@@ -16,10 +16,10 @@
   <https://api.codeclimate.com/v1/badges/af70c14ac330cd2c86dc/test_coverage>
   )](
   <https://codeclimate.com/github/eggplants/wiredify/test_coverage>
-) [![Test](
-  <https://github.com/eggplants/wiredify/actions/workflows/test.yml/badge.svg>
+) [![Code Coverage](
+  <https://qlty.sh/badges/6e8b0efe-da67-4184-adfc-81106a08887a/test_coverage.svg>
   )](
-  <https://github.com/eggplants/wiredify/actions/workflows/test.yml>
+  <https://qlty.sh/gh/eggplants/projects/wiredify>
 )
 
 [![ghcr latest](

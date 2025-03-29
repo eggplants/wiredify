@@ -1,3 +1,5 @@
+"""wiredify main module."""
+
 from __future__ import annotations
 
 import argparse
@@ -13,11 +15,18 @@ class CustomFormatter(
     argparse.ArgumentDefaultsHelpFormatter,
     argparse.RawDescriptionHelpFormatter,
 ):
-    pass
+    """Custom formatter for argparse to handle width and max_help_position."""
 
 
 def parse_args(test: list[str] | None = None) -> argparse.Namespace:
-    """Parse arguments."""
+    """Parse arguments.
+
+    Args:
+        test (list[str] | None): List of arguments for testing.
+
+    Returns:
+        argparse.Namespace: Parsed arguments.
+    """
     parser = argparse.ArgumentParser(
         prog="wiredify",
         formatter_class=(
@@ -91,6 +100,11 @@ def __main(test: list[str] | None = None) -> int:
 
 
 def main(test: list[str] | None = None) -> None:
+    """Main function to run the script.
+
+    Args:
+        test (list[str] | None): List of arguments for testing.
+    """
     sys.exit(__main(test))
 
 
