@@ -40,12 +40,6 @@ repos:
   - id: mypy
     files: ^wiredify/
     args: [--strict]
-- repo: https://github.com/murilo-cunha/mirrors-pyre
-  rev: v0.9.23
-  hooks:
-  - id: pyre-check
-    additional_dependencies:
-    - pytest
 - repo: https://github.com/igorshubovych/markdownlint-cli
   rev: v0.44.0
   hooks:
