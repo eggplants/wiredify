@@ -33,10 +33,10 @@ scripts.wiredify = "wiredify.main:main"
 
 [dependency-groups]
 dev = [
-  "mypy>=0.991,<1.15",
-  "pre-commit>=2.20,<4",
+  "mypy>=0.991,<1.20",
+  "pre-commit>=2.20,<5",
   "pytest>=7.2.2,<9",
-  "pytest-cov>=4,<6",
+  "pytest-cov>=4,<8",
   "taskipy>=1.10.3,<2",
 ]
 docs = [ "pdoc" ]
